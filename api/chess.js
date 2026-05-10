@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const response = await fetch(
-    "https://lichess.org/api/challenge/open",
+    "https://lichess.org/api/challenge/ai",
     {
       method: "POST",
       headers: {
@@ -8,9 +8,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       body: new URLSearchParams({
-        rating: "800",
-        clock_limit: "600",
-        clock_increment: "0",
+        level: "3",
         color: "random"
       })
     }
@@ -18,9 +16,9 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  if (data.url) {
+  if (data.id) {
     res.writeHead(302, {
-      Location: data.url
+      Location: `https://lichess.org/${data.id}`
     });
     res.end();
   } else {
