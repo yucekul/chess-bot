@@ -16,10 +16,9 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  // 🔥 ÖNEMLİ: redirect
-  if (data.id) {
+  if (data.url) {
     res.writeHead(302, {
-      Location: `https://lichess.org/${data.id}`
+      Location: data.url
     });
     res.end();
   } else {
