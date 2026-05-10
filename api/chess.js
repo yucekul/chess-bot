@@ -16,9 +16,12 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  if (data.url) {
+  if (data.id) {
+    // 🔥 KRİTİK KISIM
+    const gameUrl = `https://lichess.org/${data.id}`;
+
     res.writeHead(302, {
-      Location: data.url
+      Location: gameUrl
     });
     res.end();
   } else {
