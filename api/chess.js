@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       body: new URLSearchParams({
-        level: "3",
+        level: "3",       // 800'e en yakın
         color: "random"
       })
     }
@@ -17,6 +17,7 @@ export default async function handler(req, res) {
   const data = await response.json();
 
   if (data.id) {
+    // 🔥 KRİTİK KISIM: direkt oyuna at
     res.writeHead(302, {
       Location: `https://lichess.org/${data.id}`
     });
