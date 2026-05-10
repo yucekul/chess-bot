@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const response = await fetch(
-    "https://lichess.org/api/challenge/ai",
+    "https://lichess.org/api/challenge/open",
     {
       method: "POST",
       headers: {
@@ -8,7 +8,9 @@ export default async function handler(req, res) {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       body: new URLSearchParams({
-        level: "3",
+        rating: "800",
+        clock_limit: "600",
+        clock_increment: "0",
         color: "random"
       })
     }
@@ -16,12 +18,9 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  if (data.id) {
-    // 🔥 KRİTİK KISIM
-    const gameUrl = `https://lichess.org/${data.id}`;
-
+  if (data.url) {
     res.writeHead(302, {
-      Location: gameUrl
+      Location: data.url
     });
     res.end();
   } else {
