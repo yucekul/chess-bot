@@ -421,7 +421,7 @@ function initEngine(cb){
   engine.onmessage=function(e){
     var l=e.data;
     if(l==='uciok'){
-      engine.postMessage('setoption name Skill Level value 1');
+      engine.postMessage('setoption name Skill Level value 0');
       engine.postMessage('setoption name UCI_LimitStrength value true');
       engine.postMessage('setoption name UCI_Elo value 800');
       engine.postMessage('isready');
