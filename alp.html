@@ -421,7 +421,7 @@ function initEngine(cb){
   engine.onmessage=function(e){
     var l=e.data;
     if(l==='uciok'){
-      engine.postMessage('setoption name Skill Level value 1');
+      engine.postMessage('setoption name Skill Level value 2');
       engine.postMessage('setoption name UCI_LimitStrength value true');
       engine.postMessage('setoption name UCI_Elo value 800');
       engine.postMessage('isready');
@@ -442,7 +442,7 @@ function engineGo(fen,cb){
   engCB=cb;
   engine.postMessage('ucinewgame');
   engine.postMessage('position fen '+fen);
-  engine.postMessage('go depth 8 movetime 900');
+  engine.postMessage('go depth 4 movetime 3000');
 }
 
 /* ── GAME ── */
